@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #ff0000;
+  --color-secondary: #dc2626;
+  --color-dark: #000000;
+  --color-dark-light: #111111;
+  --color-custom: #fff;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+.parallax {
+  background-attachment: fixed;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.slow-scroll {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #0a0a0a;
+}
+::-webkit-scrollbar-thumb {
+  background: #ff0000;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #b91c1c;
+}
+
+/* Stars animation */
+@keyframes twinkle {
+  0% { opacity: 0; }
+  50% { opacity: 1; }
+  100% { opacity: 0; }
+}
+
+.stars, .stars2, .stars3 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.stars {
+  background: transparent;
+  animation: twinkle 5s infinite;
+}
+
+.stars::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  box-shadow: 
+    100px 200px 2px white,
+    300px 400px 3px white,
+    500px 100px 1px white,
+    700px 600px 2px white,
+    900px 300px 1px white,
+    200px 800px 2px white,
+    400px 200px 1px white,
+    600px 500px 3px white,
+    800px 700px 2px white,
+    1000px 400px 1px white;
+}
+
+.stars2 {
+  background: transparent;
+  animation: twinkle 8s infinite reverse;
+}
+
+.stars2::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  box-shadow: 
+    150px 250px 2px rgba(255,255,255,0.8),
+    350px 450px 3px rgba(255,255,255,0.8),
+    550px 150px 1px rgba(255,255,255,0.8),
+    750px 650px 2px rgba(255,255,255,0.8),
+    950px 350px 1px rgba(255,255,255,0.8);
+}
+
+.stars3 {
+  background: transparent;
+  animation: twinkle 12s infinite;
+}
+
+.stars3::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+  box-shadow: 
+    50px 150px 3px rgba(255,255,255,0.6),
+    250px 550px 2px rgba(255,255,255,0.6),
+    450px 250px 1px rgba(255,255,255,0.6),
+    650px 750px 3px rgba(255,255,255,0.6),
+    850px 450px 2px rgba(255,255,255,0.6);
+}
+
+/* Swiper kasthemm */
+.projects-swiper {
+  padding: 20px 0 50px 0;
+}
+
+.projects-swiper .swiper-button-next,
+.projects-swiper .swiper-button-prev {
+  color: #ff0000;
+  background: rgba(255, 255, 255, 0.1);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  backdrop-filter: blur(4px);
+  padding: 10px;
+}
+
+.projects-swiper .swiper-button-next:after,
+.projects-swiper .swiper-button-prev:after {
+  font-size: 18px;
+}
+
+.projects-swiper .swiper-button-next:hover,
+.projects-swiper .swiper-button-prev:hover {
+  background: rgba(255, 0, 0, 0.2);
+}
+
+.projects-swiper .swiper-pagination-bullet {
+  background: #ff0000;
+  opacity: 0.5;
+}
+
+.projects-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+  background: #ff0000;
+}
+
+.projects-swiper .swiper-slide {
+  height: auto;
+  transition: all 0.3s ease;
+}
