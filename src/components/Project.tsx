@@ -1,11 +1,13 @@
 import { motion } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import { Swiper, SwiperSlide } from 'swiper/react'
-import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules'
+import { EffectCoverflow, Navigation, Pagination, Autoplay } from 'swiper/modules'
+
+// Import Swiper styles
 import 'swiper/css'
+import 'swiper/css/effect-coverflow'
 import 'swiper/css/navigation'
 import 'swiper/css/pagination'
-import 'swiper/css/effect-coverflow'
 
 interface Project {
   title: string
@@ -65,11 +67,6 @@ const Projects = () => {
 
   return (
     <section id="projects" className="py-20 bg-dark relative overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-primary rounded-full filter blur-3xl"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary rounded-full filter blur-3xl"></div>
-      </div>
-
       <div className="container mx-auto px-6 relative z-10">
         <motion.h2
           initial={{ opacity: 0, y: 30 }}
@@ -86,14 +83,14 @@ const Projects = () => {
           transition={{ delay: 0.2 }}
           className="text-center text-gray-400 mb-12 max-w-2xl mx-auto"
         >
-          Swipe or drag to explore my latest work
+          Swipe or drag to explore my work
         </motion.p>
 
         <Swiper
-          effect="coverflow"
+          effect={'coverflow'}
           grabCursor={true}
           centeredSlides={true}
-          slidesPerView="auto"
+          slidesPerView={'auto'}
           coverflowEffect={{
             rotate: 50,
             stretch: 0,
@@ -107,27 +104,32 @@ const Projects = () => {
             delay: 3000,
             disableOnInteraction: false,
           }}
-          loop={true}
           modules={[EffectCoverflow, Navigation, Pagination, Autoplay]}
           className="projects-swiper"
           breakpoints={{
-            640: {
+            320: {
               slidesPerView: 1,
-              spaceBetween: 20,
+              centeredSlides: false,
             },
             768: {
               slidesPerView: 2,
-              spaceBetween: 30,
+              centeredSlides: true,
             },
             1024: {
               slidesPerView: 3,
-              spaceBetween: 40,
+              centeredSlides: true,
             },
           }}
         >
           {projects.map((project, index) => (
-            <SwiperSlide key={index} className="pb-12">
-              <div className="group relative h-full">
+            <SwiperSlide key={index} className="pb-12 pt-4">
+              <motion.div
+                initial={{ opacity: 0, y: 50 }}
+                animate={inView ? { opacity: 1, y: 0 } : {}}
+                transition={{ delay: index * 0.1, duration: 0.5 }}
+                whileHover={{ y: -10 }}
+                className="group relative h-full"
+              >
                 <div className="absolute inset-0 bg-gradient-to-r from-primary to-secondary rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 blur"></div>
                 <div className="relative bg-dark/80 backdrop-blur-xl p-[2px] rounded-2xl h-full">
                   <div className="bg-dark-light rounded-2xl p-6 h-full flex flex-col">
@@ -166,7 +168,7 @@ const Projects = () => {
                     </a>
                   </div>
                 </div>
-              </div>
+              </motion.div>
             </SwiperSlide>
           ))}
         </Swiper>
